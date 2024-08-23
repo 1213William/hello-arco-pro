@@ -70,7 +70,7 @@ function RegisterForm({ registerRef }) {
         <FormItem
           label="确认密码"
           field="confirm_password"
-          dependencies={['password']}
+          //   dependencies={['password']}
           rules={[
             {
               validator: (v, cb) => {
