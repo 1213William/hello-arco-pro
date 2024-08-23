@@ -1,7 +1,7 @@
-import type { CustomCellRendererProps } from "@ag-grid-community/react";
-import { type FunctionComponent } from "react";
-
-import styles from "./FlagCellRenderer.module.css";
+import type { CustomCellRendererProps } from '@ag-grid-community/react';
+import type { FunctionComponent } from 'react';
+import React from 'react';
+import styles from './FlagCellRenderer.module.css';
 
 export const FlagCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
   value,
