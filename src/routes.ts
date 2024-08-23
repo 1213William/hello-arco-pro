@@ -150,6 +150,30 @@ export const routes: IRoute[] = [
       },
     ],
   },
+  {
+    name: 'menu.markdown',
+    key: 'markdown',
+    children: [
+      {
+        name: 'menu.markdown.table',
+        key: 'markdown/table',
+      },
+      {
+        name: 'menu.markdown.edit',
+        key: 'markdown/edit',
+      },
+    ],
+  },
+  {
+    name: 'menu.agGrid',
+    key: 'agGrid',
+    children: [
+      {
+        name: 'menu.agGrid.agTable',
+        key: 'agTable',
+      },
+    ],
+  },
 ];
 
 export const getName = (path: string, routes) => {

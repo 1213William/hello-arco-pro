@@ -15,7 +15,7 @@ import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import styles from './style/index.module.less';
 
-export default function LoginForm() {
+export default function LoginForm({ handleClickRegister }) {
   const formRef = useRef<FormInstance>();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -125,6 +125,7 @@ export default function LoginForm() {
             type="text"
             long
             className={styles['login-form-register-btn']}
+            onClick={handleClickRegister}
           >
             {t['login.form.register']}
           </Button>

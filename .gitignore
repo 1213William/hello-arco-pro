@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+pre-commit
 
 # testing
 /coverage
@@ -23,6 +24,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+yarn.local
 
 # local env files
 .env.local
