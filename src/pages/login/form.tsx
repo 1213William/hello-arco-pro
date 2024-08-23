@@ -42,24 +42,24 @@ export default function LoginForm() {
   function login(params) {
     setErrorMessage('');
     setLoading(true);
-    if (params.userName === 'admin' && params.password === 'admin') {
-      afterLoginSuccess(params);
-    } else {
-      setErrorMessage('用户名或密码错误');
-    }
-    // axios
-    //   .post('/api/user/login', params)
-    //   .then((res) => {
-    //     const { status, msg } = res.data;
-    //     if (status === 'ok') {
-    //       afterLoginSuccess(params);
-    //     } else {
-    //       setErrorMessage(msg || t['login.form.login.errMsg']);
-    //     }
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
+    // if (params.userName === 'admin' && params.password === 'admin') {
+    //   afterLoginSuccess(params);
+    // } else {
+    //   setErrorMessage('用户名或密码错误');
+    // }
+    axios
+      .post('/api/user/login', params)
+      .then((res) => {
+        const { status, msg } = res.data;
+        if (status === 'ok') {
+          afterLoginSuccess(params);
+        } else {
+          setErrorMessage(msg || t['login.form.login.errMsg']);
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   function onSubmitClick() {
