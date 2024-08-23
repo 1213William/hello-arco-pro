@@ -20,11 +20,11 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import type { FunctionComponent } from 'react';
 
 import styles from './HRExample.module.css';
-import { ContactCellRenderer } from './cell-renderers/ContactCellRenderer';
-import { EmployeeCellRenderer } from './cell-renderers/EmployeeCellRenderer';
-import { FlagCellRenderer } from './cell-renderers/FlagCellRenderer';
-import { StatusCellRenderer } from './cell-renderers/StatusCellRenderer';
-import { TagCellRenderer } from './cell-renderers/TagCellRenderer';
+import { ContactCellRenderer } from './ContactCellRenderer';
+import { EmployeeCellRenderer } from './EmployeeCellRenderer';
+import { FlagCellRenderer } from './FlagCellRenderer';
+import { StatusCellRenderer } from './StatusCellRenderer';
+import { TagCellRenderer } from './TagCellRenderer';
 import { getData } from './data';
 import classNames from 'classnames';
 import { RowDragEndEvent } from 'ag-grid-community';
