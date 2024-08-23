@@ -3,7 +3,7 @@ import type { FunctionComponent } from 'react';
 import React from 'react';
 import styles from './StatusCellRenderer.module.css';
 
-export const StatusCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
+const StatusCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
   value,
 }) => (
   <div className={`${styles.tag} ${styles[value + 'Tag']}`}>
@@ -13,3 +13,5 @@ export const StatusCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
     <span>{value}</span>
   </div>
 );
+
+export default StatusCellRenderer;

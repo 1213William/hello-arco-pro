@@ -3,7 +3,7 @@ import type { FunctionComponent } from 'react';
 import React from 'react';
 import styles from './TagCellRenderer.module.css';
 
-export const TagCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
+const TagCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
   value,
   valueFormatted,
 }) => (
@@ -12,3 +12,5 @@ export const TagCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
     <span>{valueFormatted}</span>
   </div>
 );
+
+export default TagCellRenderer;

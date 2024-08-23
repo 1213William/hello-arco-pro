@@ -3,7 +3,7 @@ import type { FunctionComponent } from 'react';
 import React from 'react';
 import styles from './FlagCellRenderer.module.css';
 
-export const FlagCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
+const FlagCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
   value,
   data: { flag },
 }) => (
@@ -18,3 +18,5 @@ export const FlagCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
     />
   </div>
 );
+
+export default FlagCellRenderer;

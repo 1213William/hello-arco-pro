@@ -5,20 +5,21 @@ import React from 'react';
 import styles from './ContactCellRenderer.module.css';
 import { Button } from '@arco-design/web-react';
 
-export const ContactCellRenderer: FunctionComponent<CustomCellRendererProps> =
-  ({ data }) => {
-    const emailName = data.orgHierarchy.at(-1).toLowerCase().replace(' ', '.');
+const ContactCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
+  data,
+}) => {
+  const emailName = data.orgHierarchy.at(-1).toLowerCase().replace(' ', '.');
 
-    return (
-      <div className={styles.contactCell}>
-        <div className={styles.iconContainer}>
-          <Button type="text" style={{ padding: '0 4px' }}>
-            同级
-          </Button>
-          <Button type="text" style={{ padding: '0 4px' }}>
-            子级
-          </Button>
-          {/* <button className="button-secondary">
+  return (
+    <div className={styles.contactCell}>
+      <div className={styles.iconContainer}>
+        <Button type="text" style={{ padding: '0 4px' }}>
+          同级
+        </Button>
+        <Button type="text" style={{ padding: '0 4px' }}>
+          子级
+        </Button>
+        {/* <button className="button-secondary">
           <a
             href={`https://www.linkedin.com/company/ag-grid/`}
             target="_blank"
@@ -44,7 +45,9 @@ export const ContactCellRenderer: FunctionComponent<CustomCellRendererProps> =
             />
           </a>
         </button> */}
-        </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
+
+export default ContactCellRenderer;
