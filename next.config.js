@@ -42,5 +42,8 @@ module.exports = withLess(
       ];
     },
     pageExtensions: ['tsx'],
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
   })
 );

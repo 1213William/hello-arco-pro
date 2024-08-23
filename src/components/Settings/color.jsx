@@ -10,7 +10,7 @@ import styles from './style/color-panel.module.less';
 function ColorPanel() {
   const theme =
     document.querySelector('body').getAttribute('arco-theme') || 'light';
-  const settings = useSelector((state: GlobalState) => state.settings);
+  const settings = useSelector((state) => state.settings);
   const locale = useLocale();
   const themeColor = settings.themeColor;
   const list = generate(themeColor, { list: true });

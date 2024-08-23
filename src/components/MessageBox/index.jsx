@@ -22,10 +22,8 @@ import styles from './style/index.module.less';
 function DropContent() {
   const t = useLocale();
   const [loading, setLoading] = useState(false);
-  const [groupData, setGroupData] = useState<{
-    [key: string]: MessageListType;
-  }>({});
-  const [sourceData, setSourceData] = useState<MessageListType>([]);
+  const [groupData, setGroupData] = useState({});
+  const [sourceData, setSourceData] = useState < MessageListType > [];
 
   function fetchSourceData(showLoading = true) {
     showLoading && setLoading(true);
@@ -39,7 +37,7 @@ function DropContent() {
       });
   }
 
-  function readMessage(data: MessageListType) {
+  function readMessage(data) {
     const ids = data.map((item) => item.id);
     axios
       .post('/api/message/read', {
@@ -55,10 +53,7 @@ function DropContent() {
   }, []);
 
   useEffect(() => {
-    const groupData: { [key: string]: MessageListType } = groupBy(
-      sourceData,
-      'type'
-    );
+    const groupData = groupBy(sourceData, 'type');
     setGroupData(groupData);
   }, [sourceData]);
 

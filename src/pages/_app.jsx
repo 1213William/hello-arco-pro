@@ -21,16 +21,12 @@ import '../mock';
 
 const store = createStore(rootReducer);
 
-interface RenderConfig {
-  arcoLang?: string;
-  arcoTheme?: string;
-}
+// interface RenderConfig {
+//   arcoLang?: string;
+//   arcoTheme?: string;
+// }
 
-export default function MyApp({
-  pageProps,
-  Component,
-  renderConfig,
-}: AppProps & { renderConfig: RenderConfig }) {
+export default function MyApp({ pageProps, Component, renderConfig }) {
   const { arcoLang, arcoTheme } = renderConfig;
   const [lang, setLang] = useStorage('arco-lang', arcoLang || 'en-US');
   const [theme, setTheme] = useStorage('arco-theme', arcoTheme || 'light');
