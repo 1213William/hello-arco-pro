@@ -8,8 +8,6 @@ import { Button } from '@arco-design/web-react';
 const ContactCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
   data,
 }) => {
-  const emailName = data.orgHierarchy.at(-1).toLowerCase().replace(' ', '.');
-
   return (
     <div className={styles.contactCell}>
       <div className={styles.iconContainer}>
@@ -19,32 +17,9 @@ const ContactCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
         <Button type="text" style={{ padding: '0 4px' }}>
           子级
         </Button>
-        {/* <button className="button-secondary">
-          <a
-            href={`https://www.linkedin.com/company/ag-grid/`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.iconLink}
-          >
-            <img
-              className={styles.icon}
-              src={`/example/hr/linkedin.svg`}
-              alt="linkedin"
-            />
-          </a>
-        </button>
-        <button className="button-secondary">
-          <a
-            href={`mailto:${emailName}@company.com`}
-            className={styles.iconLink}
-          >
-            <img
-              className={styles.icon}
-              src={`/example/hr/email.svg`}
-              alt="email"
-            />
-          </a>
-        </button> */}
+        <Button type="text" style={{ padding: '0 4px' }}>
+          删除
+        </Button>
       </div>
     </div>
   );

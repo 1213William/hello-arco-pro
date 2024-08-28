@@ -27,7 +27,9 @@ import StatusCellRenderer from './StatusCellRenderer';
 import TagCellRenderer from './TagCellRenderer';
 import { getData } from './data';
 import classNames from 'classnames';
-import { RowDragEndEvent } from 'ag-grid-community';
+import { RowDragEndEvent, RowDragMoveEvent } from 'ag-grid-community';
+import { ClipboardModule } from '@ag-grid-enterprise/clipboard';
+import { RangeSelectionModule } from '@ag-grid-enterprise/range-selection';
 
 ModuleRegistry.registerModules([
   ClientSideRowModelModule,
@@ -37,6 +39,8 @@ ModuleRegistry.registerModules([
   RichSelectModule,
   SetFilterModule,
   StatusBarModule,
+  ClipboardModule,
+  RangeSelectionModule,
 ]);
 
 interface Props {
@@ -65,13 +69,13 @@ const AgTable: FunctionComponent<Props> = ({
   const gridRef = useRef<AgGridReact>(null);
 
   const [colDefs] = useState<ColDef[]>([
-    {
-      headerName: 'Drag',
-      width: 100,
-      rowDrag: true,
-      suppressMenu: true,
-      suppressMovable: true,
-    },
+    // {
+    //   headerName: 'Drag',
+    //   width: 100,
+    //   rowDrag: (params) => !params.node.group,
+    //   suppressMenu: true,
+    //   suppressMovable: true,
+    // },
     {
       headerName: 'ID',
       field: 'employeeId',
@@ -87,7 +91,7 @@ const AgTable: FunctionComponent<Props> = ({
     },
     {
       field: 'employmentType',
-      editable: true,
+      // editable: true,
       width: 180,
       minWidth: 180,
       flex: 1,
@@ -102,7 +106,7 @@ const AgTable: FunctionComponent<Props> = ({
       minWidth: 200,
       flex: 1,
       cellRenderer: FlagCellRenderer,
-      editable: true,
+      // editable: true,
     },
     {
       field: 'joinDate',
@@ -117,7 +121,7 @@ const AgTable: FunctionComponent<Props> = ({
     },
     {
       field: 'paymentMethod',
-      editable: true,
+      // editable: true,
       width: 180,
       cellEditor: 'agRichSelectCellEditor',
       cellEditorParams: {
@@ -127,7 +131,7 @@ const AgTable: FunctionComponent<Props> = ({
     {
       headerName: 'Status',
       field: 'paymentStatus',
-      editable: true,
+      // editable: true,
       width: 100,
       cellRenderer: StatusCellRenderer,
       cellEditor: 'agRichSelectCellEditor',
@@ -143,15 +147,18 @@ const AgTable: FunctionComponent<Props> = ({
     },
   ]);
   const [rowData] = useState(getData());
-  const getDataPath = useCallback<GetDataPath>((data) => data.orgHierarchy, []);
+  const getDataPath = useCallback<GetDataPath>((data) => data.field, []);
   const themeClass = isDarkMode ? `${gridTheme}-dark` : gridTheme;
   const autoGroupColumnDef = useMemo<ColDef>(() => {
     return {
-      //   rowDrag: true,
-      headerName: 'Employee',
+      rowDrag: true,
+      headerName: '字段名',
+      field: 'field',
       width: 330,
       pinned: 'left',
-      sort: 'asc',
+      // sort: 'asc',
+      editable: true,
+
       cellRenderer: 'agGroupCellRenderer',
       cellRendererParams: {
         suppressCount: true,
@@ -165,13 +172,59 @@ const AgTable: FunctionComponent<Props> = ({
     // 在这里处理拖拽结束后的逻辑
   }, []);
 
+  const columns = useMemo(() => {
+    return [
+      {
+        headerName: '字段类型',
+        field: 'fieldType',
+        width: 120,
+        cellEditor: 'agRichSelectCellEditor',
+        editable: true,
+        cellEditorParams: {
+          values: ['string', 'number', 'boolean', 'array', 'object'],
+        },
+      },
+      {
+        headerName: '字段名称',
+        field: 'title',
+        width: 120,
+        editable: true,
+        cellEditor: 'agTextCellEditor',
+      },
+      {
+        headerName: '字段描述',
+        field: 'desc',
+        width: 120,
+        editable: true,
+        cellEditor: 'agTextCellEditor',
+      },
+      {
+        headerName: '必填',
+        field: 'required',
+        width: 120,
+        editable: true,
+        cellEditor: 'agSelectCellEditor',
+        cellEditorParams: {
+          values: ['是', '否'],
+        },
+      },
+      {
+        field: '操作',
+        cellRenderer: ContactCellRenderer,
+        minWidth: 200,
+        maxWidth: 200,
+      },
+    ];
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={classNames(themeClass, styles.grid)}>
           <AgGridReact
             ref={gridRef}
-            columnDefs={colDefs}
+            columnDefs={columns}
+            // columnDefs={colDefs}
             rowData={rowData}
             groupDefaultExpanded={-1}
             getDataPath={getDataPath}
@@ -179,6 +232,12 @@ const AgTable: FunctionComponent<Props> = ({
             autoGroupColumnDef={autoGroupColumnDef}
             rowDragManaged={true}
             animateRows={true}
+            defaultColDef={{
+              flex: 1,
+            }}
+            // rowSelection={'multiple'}
+            // rowGroupPanelShow={'always'}
+            enableRangeSelection={true}
           />
         </div>
       </div>

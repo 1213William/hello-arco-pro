@@ -11,11 +11,11 @@ const FlagCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
     <div className={styles.employeeData}>
       <span>{value}</span>
     </div>
-    <img
+    {/* <img
       className={styles.image}
       src={`https://lf-cdn-tos.bytescm.com/obj/static/xitu_extension/static/brand.82c24770.svg`}
       alt={value.toLowerCase()}
-    />
+    /> */}
   </div>
 );
 

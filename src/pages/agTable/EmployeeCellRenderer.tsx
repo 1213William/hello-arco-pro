@@ -5,19 +5,15 @@ import styles from './EmployeeCellRenderer.module.css';
 
 const EmployeeCellRenderer: FunctionComponent<CustomCellRendererProps> = ({
   value,
-  data: { image, jobTitle },
-}) => (
-  <div className={styles.employeeCell}>
-    <div className={styles.employeeData}>
-      <span>{value}</span>
-      <span className={styles.description}>{jobTitle}</span>
+  data,
+}) => {
+  const { jobTitle } = data || {};
+
+  return (
+    <div className={styles.employeeCell}>
+      <div className={styles.employeeData}>{jobTitle}</div>
     </div>
-    <img
-      className={styles.image}
-      src={`https://lf-cdn-tos.bytescm.com/obj/static/xitu_extension/static/brand.82c24770.svg`}
-      alt={value.toLowerCase()}
-    />
-  </div>
-);
+  );
+};
 
 export default EmployeeCellRenderer;
